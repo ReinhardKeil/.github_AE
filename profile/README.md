@@ -24,7 +24,9 @@ Keil Studio is designed for all types of embedded projects, ranging from bare-me
 
 [<img src="ML_Video.png" alt="Development flow for optimized Edge AI devices" width="318" height="190" align="left">](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250812_Multicore_Alif.mp4?#t=07:22 "Development flow for optimized Edge AI devices")
 
-Arm offers for Edge AI development on the Cortex-M processor family and Ethos-U NPU series comprehensive tool and software support. **[Watch this video](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250812_Multicore_Alif.mp4?#t=07:22 "Development flow for optimized Edge AI devices")**, explore the projects below or read the section [**Edge AI**](EdgeAI.md) to learn more.
+Arm offers for Edge AI development on the Cortex-M processor family and Ethos-U NPU series comprehensive tool and software support. 
+
+**[Watch this video](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250812_Multicore_Alif.mp4?#t=07:22 "Development flow for optimized Edge AI devices")**, explore the projects below or read the section [**Edge AI**](EdgeAI.md) to learn more.
 
 <br clear="left"/>
 

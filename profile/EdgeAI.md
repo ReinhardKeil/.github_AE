@@ -2,7 +2,7 @@
 
 # Edge AI (Machine Learning)
 
-Arm offers for Edge AI development on the Cortex-M processor family and Ethos-U NPU series comprehensive tool and software support. Simple machine learning algorithms even execute on a ultra-low-power Cortex-M0+ device while the Cortex-M52/55/85 processors with Helium vector extension are optimized for neural networks. Combining a Cortex-M processor with a Ethos-U NPU delivers up to 480 times performance uplift for ML workloads while maintaining minimal power consumption.
+Arm offers comprehensive tool and software support for Edge AI development on the Cortex-M processor family and Ethos-U NPU series. Simple machine learning algorithms even execute on an ultra-low-power Cortex-M0+ device while the Cortex-M52/55/85 processors with Helium vector extension are optimized for neural networks. Combining a Cortex-M processor with an Ethos-U NPU delivers up to 480 times performance uplift for ML workloads while maintaining minimal power consumption.
 
 ## ML Frameworks for Cortex-M and Ethos-U
 
@@ -10,7 +10,7 @@ The Arm software and tool ecosystem integrates seamlessly with popular ML framew
 
 [![LiteRT](LiteRT.png "LiteRT (formerly TensorFlow Lite)")](https://www.keil.arm.com/packs/tensorflow-lite-micro-tensorflow)
 
-The **[LiteRT (TensorFlow Lite Runtime)](https://www.keil.arm.com/packs/tensorflow-lite-micro-tensorflow)** is a production-grade inference runtime optimized for Cortex-M microcontrollers optional with Ethos-U.
+The **[LiteRT (TensorFlow Lite Runtime)](https://www.keil.arm.com/packs/tensorflow-lite-micro-tensorflow)** is a production-grade inference runtime optimized for Cortex-M microcontrollers, optionally with Ethos-U.
 
 - Proven for Cortex-M only and Cortex-M + Ethos-U​
 - Optimized kernels for constrained memory​
@@ -32,7 +32,7 @@ Get started with [CMSIS-Executorch](https://github.com/Arm-Examples/CMSIS-Execut
 
 ## ML Runtime System
 
-ML models from ecosystem partners or open-source model zoos such as Huggingface are quantized and optimized for embedded deployment as explained in the previous section. CMSIS-NN executes these optimized models on Cortex-M processors. For Ethos-U NPU targets, Vela converts model operations for NPU acceleration, while operations that cannot be converted continue to run on Cortex-M via CMSIS-NN.
+ML models from ecosystem partners or open-source model zoos such as Hugging Face are quantized and optimized for embedded deployment. CMSIS-NN executes these optimized models on Cortex-M processors. For Ethos-U NPU targets, Vela converts model operations for NPU acceleration, while operations that cannot be converted continue to run on Cortex-M via CMSIS-NN.
 
 ![ML Model Runtime System](ML_Model_Runtime.png "ML Model Runtime System")
 
@@ -42,13 +42,13 @@ The [Vela compiler](https://pypi.org/project/ethos-u-vela/) provides detailed in
 
 ## Embedded Development Workflow
 
-The embedded development workflow for Edge AI applications requires training data for the ML model training that executes on a host or MLOps system. Once trained, the ML model is deployed as explained in the previous section to the embedded target. [Keil MDK](https://www.keil.arm.com/keil-mdk/) provides all tools that are required to develop and integrate the optimized ML models with the application code, device drivers, RTOS, and middleware components. Vela, Arm Compiler and FVP simulation models (the MLOps backend tools) are provided via Docker containers and CMSIS-ExecuTorch that includes also the runtime system.
+The embedded development workflow for Edge AI applications requires training data for ML model training that executes on a host or MLOps system. Once trained, the ML model is deployed to the embedded target as described above. [Keil MDK](https://www.keil.arm.com/keil-mdk/) provides all tools that are required to develop and integrate the optimized ML models with the application code, device drivers, RTOS, and middleware components. Vela, Arm Compiler and FVP simulation models (the MLOps backend tools) are provided via Docker containers and CMSIS-ExecuTorch that includes also the runtime system.
 
 The [SDS-Framework](https://www.keil.arm.com/packs/sds-arm) is a workbench for ML model development. You may capture and record real-world sensor, audio, or video data streams directly from your target hardware for ML model training. SDS enables data playback and validation of the ML model output against performance indicators. The option to run tests on hardware or FVP simulation models enables automated testing and CI/MLOps workflows without requiring physical target hardware at every step.
 
 ![Embedded Development Workflow](Embedded_Development.png "Embedded Development Workflow")
 
-Discover [Arm's ML ecosystem partners](https://www.arm.com/partners/ai-and-ml) offering optimized models and solutions for edge AI applications.
+Discover [Arm's ML ecosystem partners](https://www.arm.com/partners/ai-and-ml) offering optimized models, tools, and solutions for edge AI applications.
 
 ## More Edge AI Developer Resources
 
