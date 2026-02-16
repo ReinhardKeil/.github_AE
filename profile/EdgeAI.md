@@ -2,7 +2,7 @@
 
 # Edge AI (Machine Learning)
 
-Arm offers comprehensive tool and software support for Edge AI development on the Cortex-M processor family and Ethos-U NPU series. Simple machine learning algorithms even execute on an ultra-low-power Cortex-M0+ device while the Cortex-M52/55/85 processors with Helium vector extension are optimized for neural networks. Combining a Cortex-M processor with an Ethos-U NPU delivers up to 480 times performance uplift for ML workloads while maintaining minimal power consumption.
+Arm offers comprehensive tool and software support for Edge AI development targeting the [Cortex-M processor family](https://www.arm.com/products/silicon-ip-cpu?families=cortex-m&showall=true) and [Ethos-U NPU series](https://www.arm.com/products/silicon-ip-cpu?families=ethos%20npus). Simple machine learning algorithms even execute on an ultra-low-power Cortex-M0+ device while the Cortex-M52/55/85 processors with [Helium vector extension](https://www.arm.com/technologies/helium) are optimized for neural networks. Combining a Cortex-M processor with an Ethos-U NPU delivers up to 480 times performance uplift for ML workloads while maintaining minimal power consumption.
 
 ## ML Frameworks for Cortex-M and Ethos-U
 
