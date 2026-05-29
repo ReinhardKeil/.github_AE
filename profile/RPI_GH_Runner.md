@@ -2,20 +2,21 @@
 
 <img src="RPi5-setup.png" alt="Setup of Raspberry Pi 5 for test execution" width="829" height="472" align="left">
 
-This is a step-by-step guide to run GitHub Actions on a Raspberry Pi 5 (Ubuntu).
+<br clear="left"/>
+
+This is a step-by-step guide using GitHub Actions on a Raspberry Pi 5.
 
 - [Setup Self-Hosted GitHub Runner on Raspberry Pi 5](#setup-self-hosted-github-runner-on-raspberry-pi-5)
   - [1. Flash Ubuntu to microSD](#1-flash-ubuntu-to-microsd)
   - [2. First boot and updates](#2-first-boot-and-updates)
   - [3. Find LAN MAC](#3-find-lan-mac)
-  - [4. Register MAC (corporate network)](#4-register-mac-corporate-network)
+  - [4. Register MAC on corporate network](#4-register-mac-on-corporate-network)
   - [5. Find IP address](#5-find-ip-address)
-  - [6. SSH from PC](#6-ssh-from-pc)
+  - [6. Connect to Rasperry Pi 5 using SSH](#6-connect-to-rasperry-pi-5-using-ssh)
   - [7. Install tools and packs](#7-install-tools-and-packs)
   - [8. Add self-hosted runner](#8-add-self-hosted-runner)
   - [9. Autostart runner (systemd)](#9-autostart-runner-systemd)
 
-<br clear="left"/>
 
 ## 1. Flash Ubuntu to microSD
 
@@ -32,7 +33,6 @@ Before you start:
 
 Use the following settings with the Raspberry Pi Imager:
 
-⚠️ Selecting a storage device and writing the image will erase the contents of the microSD card.
 
 - **Device**: Raspberry Pi 5
 - **OS**: Other general-purpose OS → Ubuntu → Ubuntu Server 24.04.3 LTS (64-bit)
@@ -44,6 +44,9 @@ Use the following settings with the Raspberry Pi Imager:
     - If the Raspberry Pi is connected via LAN, no Wi-Fi configuration is required
     - SSH authentication: enable SSH access. For simplicity, use password authentication (default).
 - **Write image**: It summarizes the configuration and lets you confirm the image setup.
+
+> [!CAUTION]
+> Selecting a storage device and writing the image will erase the contents of the microSD card.
 
 ## 2. First boot and updates
 
@@ -92,7 +95,7 @@ Connect keyboard, mouse, and monitor to your Raspberry Pi 5. On the command line
 In section `eth0`, note the value after `link/ether`, e.g. `88:A2:9E:49:E6:CB`.
 This is the LAN (Ethernet) MAC address of your Raspberry Pi 5.
 
-## 4. Register MAC (corporate network)
+## 4. Register MAC on corporate network
 
 Some corporate networks require **device registration** (often MAC address whitelisting) before a new device can get network access.
 
@@ -120,16 +123,15 @@ Some corporate networks require **device registration** (often MAC address white
 
     Note the setting behind `eth0`, e.g. `10.41.0.178`. This is the assigned IP address.
 
-## 6. SSH from PC
+## 6. Connect to Rasperry Pi 5 using SSH
 
-1. Open PowerShell on your host machine (e.g. Win11) and type:
+1. On a Windows PC open PowerShell and type (refer to SSH setup for other host operating systems):
 
     ```powershell
     ssh devuser@10.41.0.178
     ```
 
-2. Confirm the host prompt with `yes`.
-3. Enter password: `devuser`.
+2. Enter password: `devuser` to complete the connection.
 
 ## 7. Install tools and packs
 
@@ -167,7 +169,8 @@ Some corporate networks require **device registration** (often MAC address white
     export CMSIS_PACK_ROOT="$HOME/packs"
     ```
 
-    ⚠️ Make paths available after a reboot of the Raspberry Pi hardware:
+   > [!IMPORTANT]
+   > Make paths available after a reboot of the Raspberry Pi hardware with:
 
     ```bash
     echo 'export PATH="$HOME/pyocd:$PATH"' >> ~/.bashrc
@@ -176,32 +179,30 @@ Some corporate networks require **device registration** (often MAC address white
     echo 'export CMSIS_PACK_ROOT="$HOME/packs"' >> ~/.bashrc
     ```
 
-    ⚠️ Sanity check for pyocd and cpackget:
+   > [!TIP]
+   > Sanity check `pyOCD` and `cpackget` installation and version numbers:
 
     ```bash
-    pyocd --version
-    cpackget --version
-    cbuild --version
+    pyocd --version            # expected version 0.44.1 or higher
+    cpackget --version         # expected version 2.2.1 or higher
+    cbuild --version           # expected version 2.14.1 or higher
     ```
 
-    Expected versions (example):
-    - pyocd: 0.44.1
-    - cpackget: 2.2.1
-    - cbuild: 2.14.1
+5. Install required software packs
 
-5. Install required DFP and BSP 
-    
-    For the connected target boards install the required software packs with flash algorithms, for example:
+    Install for the target hardware the BSP and DFP software packs. The [`*.cbuild-run.yml`](https://open-cmsis-pack.github.io/cmsis-toolbox/YML-CBuild-Format/#run-and-debug-management) file of your application lists this information. Alternatively use [www.keil.arm.com/packs](https://www.keil.arm.com/packs) to discover this information. For the NUCLEO-H563ZI these packs are requried:
 
     ```bash
-    cpackget add Keil::STM32H5xx_DFP@2.2.0 -a
-    cpackget add Infineon::T2G-B-H_DFP@1.2.1 -a
-    cpackget add AlifSemiconductor::Ensemble@2.1.0 -a
+    cpackget add Keil::NUCLEO-H563ZI_BSP@1.1.1
+    cpackget add Keil::STM32H5xx_DFP@2.2.0
     ```
+
+   > [!NOTE]
+   > This is a one-time installation that depends on your hardware
 
 6. Install udev rules (required for USB access)
 
-    The udev rules control how USB devices are detected and what permissions they get. This are typical setup examples:
+    The udev rules control how USB devices are detected and what permissions they get. The following examples show typical setups:
 
     ```bash
     # ---- STLINK V3 ----
