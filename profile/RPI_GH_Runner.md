@@ -10,13 +10,12 @@ This is a step-by-step guide for the configuration of a Raspberry Pi 5 that runs
   - [1. Flash Ubuntu to microSD](#1-flash-ubuntu-to-microsd)
   - [2. First boot and updates](#2-first-boot-and-updates)
   - [3. Find LAN MAC](#3-find-lan-mac)
-  - [4. Register MAC on corporate network](#4-register-mac-on-corporate-network)
-  - [5. Find IP address](#5-find-ip-address)
-  - [6. Connect to Raspberry Pi 5 using SSH](#6-connect-to-raspberry-pi-5-using-ssh)
-  - [7. Install tools and packs](#7-install-tools-and-packs)
-  - [8. Add self-hosted runner](#8-add-self-hosted-runner)
-  - [9. Autostart runner (systemd)](#9-autostart-runner-systemd)
-
+  - [3. Register MAC on corporate network](#3-register-mac-on-corporate-network)
+  - [4. Find IP address](#4-find-ip-address)
+  - [5. Connect with SSH from remote computer](#5-connect-with-ssh-from-remote-computer)
+  - [6. Install tools and packs](#6-install-tools-and-packs)
+  - [7. Add self-hosted runner](#7-add-self-hosted-runner)
+  - [8. Autostart runner (systemd)](#8-autostart-runner-systemd)
 
 ## 1. Flash Ubuntu to microSD
 
@@ -72,7 +71,7 @@ Use the following settings with the Raspberry Pi Imager:
     74 updates can be applied immediately.
     ```
 
-    - Note the assigned IP address; you will use it for SSH from your host computer.
+    - The assigned IP address is use to connect to the Raspberry Pi using SSH from your host computer (see section 6).
 
 5. **Apply available updates** (this may take some time)
 
@@ -94,35 +93,42 @@ ip a
 In the `eth0` section, note the value after `link/ether`, e.g., `88:A2:9E:49:E6:CB`.
 This is the LAN (Ethernet) MAC address of your Raspberry Pi 5.
 
-## 4. Register MAC on corporate network
+## 3. Register MAC on corporate network
 
 Some corporate networks require **device registration** (often MAC address whitelisting) before a new device can get network access.
 
 1. Check your corporate IT/network onboarding process.
    - Look for a device registration portal, NAC onboarding page, or a helpdesk workflow.
 
-2. Register the Raspberry Pi's **Ethernet MAC address** (from Section 3) in your corporate system.
+2. Find the LAN MAC address of your Raspberry Pi 5 with:
+
+   ```bash
+   ip a
+   ```
+
+   In the `eth0` section, the value after `link/ether`, e.g., `88:A2:9E:49:E6:CB` is the LAN (Ethernet) MAC address of your Raspberry Pi 5.
+
+3. Register the Raspberry Pi's **Ethernet MAC address** (from Section 3) in your corporate system.
    - Typical fields are:
      - Device name: `rsp-p5-01` (example)
      - Device ID / MAC: `88:A2:9E:49:E6:CB` (example)
      - Description: Raspberry Pi 5 (runner)
 
-3. Wait for approval/propagation (if applicable), then reconnect the Ethernet cable and continue with the next section.
+4. Wait for approval/propagation (if applicable), then reconnect the Ethernet cable and continue with the next section.
 
-## 5. Find IP address
+## 4. Find IP address
 
-1. Connect to your Raspberry Pi with keyboard, mouse, LAN cable, and a monitor (HDMI 1).
+1. Connect to your Raspberry Pi with keyboard, mouse, LAN cable, and a monitor.
     - The Raspberry Pi is assigned an IP address.
-2. Switch to HDMI 1 input on your monitor.
-3. Type:
+2. Type:
 
     ```bash
     ip a
     ```
 
-    Note the setting behind `eth0`, e.g. `10.41.0.178`. This is the assigned IP address.
+    The value behind `eth0`, e.g. `10.41.0.178` is the assigned IP address.
 
-## 6. Connect to Raspberry Pi 5 using SSH
+## 5. Connect with SSH from remote computer
 
 1. On a Windows PC, open PowerShell and type (refer to SSH setup for other host operating systems):
 
@@ -132,7 +138,7 @@ Some corporate networks require **device registration** (often MAC address white
 
 2. Enter password: `devuser` to complete the connection.
 
-## 7. Install tools and packs
+## 6. Install tools and packs
 
 1. Update and install build tools and other software
 
@@ -306,7 +312,7 @@ this needs rework once the SDSIO-Server is available.
     ```
 -->
 
-## 8. Add self-hosted runner
+## 7. Add self-hosted runner
 
 Use GitHub’s official documentation for the most up-to-date steps:
 
@@ -321,7 +327,7 @@ High-level flow (GitHub UI will generate the exact commands and a time-limited t
 4. On the Raspberry Pi, run the **Download**, **Configure**, and **Run** commands shown by GitHub.
 5. Verify the runner shows as **Idle** on the Runners page.
 
-## 9. Autostart runner (systemd)
+## 8. Autostart runner (systemd)
 
 It is recommended to use the GitHub `svc.sh` helper that is created after you add/configure the runner on the Raspberry Pi 5. Refer to [Configuring the self-hosted runner application as a service](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/configuring-the-self-hosted-runner-application-as-a-service).
 
@@ -340,7 +346,8 @@ It is recommended to use the GitHub `svc.sh` helper that is created after you ad
    sudo ./svc.sh status
    ```
 
-Note: If you need a custom `systemd` unit, GitHub recommends invoking the runner via `runsvc.sh` and using the service template under `bin/` in the runner directory.
+> [!NOTE]
+> If you need a custom `systemd` unit, GitHub recommends invoking the runner via `runsvc.sh` and using the service template under `bin/` in the runner directory.
 
 <!---
 This needs rework
