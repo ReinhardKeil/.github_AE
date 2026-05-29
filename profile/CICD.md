@@ -8,6 +8,17 @@ Modern embedded software development requires automated workflows that ensure co
 
 ![CI/CD Process Overview](CICD_Overview.png "CI/CD Process Overview")
 
+[GitHub Actions](https://docs.github.com/en/actions) execute build or test jobs on runners. A `*.yml` file in a `.github/workflows` directory of a repository defines a set of tasks such as building and testing pull requests.
+
+The repositories on [github.com/Arm-Examples](https://github.com/Arm-Examples) use topics to label:
+
+- [cicd](https://github.com/search?q=topic%3Acicd+org%3AArm-Examples+fork%3Atrue&type=repositories) – repository with automated workflows.
+- [simulation](https://github.com/search?q=topic%3Asimulation+org%3AArm-Examples+fork%3Atrue&type=repositories) – repository with test on simulation.
+- [hardware](https://github.com/search?q=topic%3Ahardware+org%3AArm-Examples+fork%3Atrue&type=repositories) – repository with test on hardware target.
+
+[Arm-Software/cmsis-actions](https://github.com/ARM-software/cmsis-actions) are reusable workflows that let you install tools and active software licenses. Use the instructions of these actions to enable other CI/CD systems such as Azure DevOps or GitLab.
+
+
 ## CI/CD Capabilities for Embedded Development
 
 The underlying build system of [Keil Studio](https://www.keil.arm.com/) uses the [CMSIS-Toolbox](https://open-cmsis-pack.github.io/cmsis-toolbox/) and CMake. [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners) provide virtual machines for automated build and execution tests using simulation models, while [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners) enable testing on actual target hardware. [CI](https://en.wikipedia.org/wiki/Continuous_integration) is streamlined with:
@@ -50,7 +61,7 @@ CI pipelines may store build artifact files, reports, and may further automate f
 
 ## HIL Testing with pyOCD
 
-[Hardware-in-the-Loop (HIL)](https://en.wikipedia.org/wiki/Hardware-in-the-loop_simulation) testing is enabled with [self-hosted GitHub runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners) that connect to Linux systems equipped with debug probes. Build artifacts (firmware images) are generated through automated build tests on GitHub-hosted runners, then deployed to self-hosted runners where pyOCD downloads the firmware to target hardware and executes the test suite.
+[Hardware-in-the-Loop (HIL)](https://en.wikipedia.org/wiki/Hardware-in-the-loop_simulation) testing is enabled with [self-hosted GitHub runners](RPI_GH_Runner.md) that connect to Linux systems equipped with debug probes. Build artifacts (firmware images) are generated through automated build tests on GitHub-hosted runners, then deployed to self-hosted runners where pyOCD downloads the firmware to target hardware and executes the test suite.
 
 ![HIL Integration](https://raw.githubusercontent.com/Arm-Examples/Safety-Example-Infineon-T2G/main/Doc/CI_HIL.png "HIL Integration")
 

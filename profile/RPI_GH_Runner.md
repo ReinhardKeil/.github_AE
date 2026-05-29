@@ -9,7 +9,6 @@ This is a step-by-step guide for the configuration of a Raspberry Pi 5 that runs
 - [Setup Self-Hosted GitHub Runner on Raspberry Pi 5](#setup-self-hosted-github-runner-on-raspberry-pi-5)
   - [1. Flash Ubuntu to microSD](#1-flash-ubuntu-to-microsd)
   - [2. First boot and updates](#2-first-boot-and-updates)
-  - [3. Find LAN MAC](#3-find-lan-mac)
   - [3. Register MAC on corporate network](#3-register-mac-on-corporate-network)
   - [4. Find IP address](#4-find-ip-address)
   - [5. Connect with SSH from remote computer](#5-connect-with-ssh-from-remote-computer)
@@ -71,7 +70,7 @@ Use the following settings with the Raspberry Pi Imager:
     74 updates can be applied immediately.
     ```
 
-    - The assigned IP address is use to connect to the Raspberry Pi using SSH from your host computer (see section 6).
+    - The assigned IP address is use to connect to the Raspberry Pi using SSH from your host computer (see section 5).
 
 5. **Apply available updates** (this may take some time)
 
@@ -81,17 +80,6 @@ Use the following settings with the Raspberry Pi Imager:
     sudo apt full-upgrade  # Installs updates; may also remove some packages, if needed
     sudo apt autoremove    # Removes any old packages that are no longer needed
     ```
-
-## 3. Find LAN MAC
-
-Connect keyboard, mouse, and monitor to your Raspberry Pi 5. On the command line type:
-
-```bash
-ip a
-```
-
-In the `eth0` section, note the value after `link/ether`, e.g., `88:A2:9E:49:E6:CB`.
-This is the LAN (Ethernet) MAC address of your Raspberry Pi 5.
 
 ## 3. Register MAC on corporate network
 
@@ -126,7 +114,7 @@ Some corporate networks require **device registration** (often MAC address white
     ip a
     ```
 
-    The value behind `eth0`, e.g. `10.41.0.178` is the assigned IP address.
+    The value behind `eth0`, e.g. `10.41.0.178` is the assigned IP address that is used in section 5.
 
 ## 5. Connect with SSH from remote computer
 
@@ -188,7 +176,6 @@ Some corporate networks require **device registration** (often MAC address white
     ```bash
     pyocd --version            # expected version 0.44.1 or higher
     cpackget --version         # expected version 2.2.1 or higher
-    cbuild --version           # expected version 2.14.1 or higher
     ```
 
 5. Install required software packs
