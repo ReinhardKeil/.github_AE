@@ -169,8 +169,8 @@ Some corporate networks require **device registration** (often MAC address white
     export CMSIS_PACK_ROOT="$HOME/packs"
     ```
 
-   > [!IMPORTANT]
-   > Make paths available after a reboot of the Raspberry Pi hardware with:
+> [!IMPORTANT]
+> Make paths available after a reboot of the Raspberry Pi hardware with:
 
     ```bash
     echo 'export PATH="$HOME/pyocd:$PATH"' >> ~/.bashrc
@@ -179,8 +179,8 @@ Some corporate networks require **device registration** (often MAC address white
     echo 'export CMSIS_PACK_ROOT="$HOME/packs"' >> ~/.bashrc
     ```
 
-   > [!TIP]
-   > Sanity check `pyOCD` and `cpackget` installation and version numbers:
+> [!TIP]
+> Sanity check `pyOCD` and `cpackget` installation and version numbers:
 
     ```bash
     pyocd --version            # expected version 0.44.1 or higher
