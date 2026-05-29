@@ -4,7 +4,7 @@
 
 <br clear="left"/>
 
-This is a step-by-step guide using GitHub Actions on a Raspberry Pi 5.
+This is a step-by-step guide for the configuration of a Raspberry Pi 5 that runs GitHub Actions for test execution on hardware targets.
 
 - [Setup Self-Hosted GitHub Runner on Raspberry Pi 5](#setup-self-hosted-github-runner-on-raspberry-pi-5)
   - [1. Flash Ubuntu to microSD](#1-flash-ubuntu-to-microsd)
@@ -12,7 +12,7 @@ This is a step-by-step guide using GitHub Actions on a Raspberry Pi 5.
   - [3. Find LAN MAC](#3-find-lan-mac)
   - [4. Register MAC on corporate network](#4-register-mac-on-corporate-network)
   - [5. Find IP address](#5-find-ip-address)
-  - [6. Connect to Rasperry Pi 5 using SSH](#6-connect-to-rasperry-pi-5-using-ssh)
+  - [6. Connect to Raspberry Pi 5 using SSH](#6-connect-to-raspberry-pi-5-using-ssh)
   - [7. Install tools and packs](#7-install-tools-and-packs)
   - [8. Add self-hosted runner](#8-add-self-hosted-runner)
   - [9. Autostart runner (systemd)](#9-autostart-runner-systemd)
@@ -33,13 +33,12 @@ Before you start:
 
 Use the following settings with the Raspberry Pi Imager:
 
-
 - **Device**: Raspberry Pi 5
 - **OS**: Other general-purpose OS → Ubuntu → Ubuntu Server 24.04.3 LTS (64-bit)
 - **Storage**: Your microSD card (example: Generic STORAGE DEVICE USB Device)
 - **Customization**:
     - Enter a unique hostname, for example: `rpi-ci`
-    - Set capital city, time zone, keyboard layout
+    - Set locale, time zone, and keyboard layout
     - Configure username and password (example: username `devuser`, password `devuser`)
     - If the Raspberry Pi is connected via LAN, no Wi-Fi configuration is required
     - SSH authentication: enable SSH access. For simplicity, use password authentication (default).
@@ -51,9 +50,9 @@ Use the following settings with the Raspberry Pi Imager:
 ## 2. First boot and updates
 
 1. **Power up the Raspberry Pi**
-    - Insert the microSD into the slot.
+    - Insert the microSD.
     - Connect the Raspberry Pi to the monitor, keyboard, mouse and LAN.
-    - Turn on the Raspberry Pi.
+    - Power on the Raspberry Pi.
 
 2. **Boot messages**
     - Top left corner: `Ubuntu 24.04.3 LTS rpi-ci tty1`
@@ -61,7 +60,7 @@ Use the following settings with the Raspberry Pi Imager:
     - If you see no progress, press **Enter**.
 
 3. **Login**
-    Prompt: `devuser@rpi-ci`. Login with username `devuser` and password `devuser`.
+    Prompt: `devuser@rpi-ci`. Log in with username `devuser` and password `devuser`.
 
 4. **Welcome screen**
 
@@ -88,11 +87,11 @@ Use the following settings with the Raspberry Pi Imager:
 
 Connect keyboard, mouse, and monitor to your Raspberry Pi 5. On the command line type:
 
-   ```bash
-   ip a
-   ```
+```bash
+ip a
+```
 
-In section `eth0`, note the value after `link/ether`, e.g. `88:A2:9E:49:E6:CB`.
+In the `eth0` section, note the value after `link/ether`, e.g., `88:A2:9E:49:E6:CB`.
 This is the LAN (Ethernet) MAC address of your Raspberry Pi 5.
 
 ## 4. Register MAC on corporate network
@@ -113,7 +112,7 @@ Some corporate networks require **device registration** (often MAC address white
 ## 5. Find IP address
 
 1. Connect to your Raspberry Pi with keyboard, mouse, LAN cable, and a monitor (HDMI 1).
-    - The Raspberry Pi gets assigned an IP address.
+    - The Raspberry Pi is assigned an IP address.
 2. Switch to HDMI 1 input on your monitor.
 3. Type:
 
@@ -123,9 +122,9 @@ Some corporate networks require **device registration** (often MAC address white
 
     Note the setting behind `eth0`, e.g. `10.41.0.178`. This is the assigned IP address.
 
-## 6. Connect to Rasperry Pi 5 using SSH
+## 6. Connect to Raspberry Pi 5 using SSH
 
-1. On a Windows PC open PowerShell and type (refer to SSH setup for other host operating systems):
+1. On a Windows PC, open PowerShell and type (refer to SSH setup for other host operating systems):
 
     ```powershell
     ssh devuser@10.41.0.178
@@ -141,7 +140,7 @@ Some corporate networks require **device registration** (often MAC address white
     sudo apt update
     sudo apt upgrade
     sudo apt install cmake ninja-build -y
-    sudo apt install unzip
+    sudo apt install unzip -y
     ```
 
 2. Download and install CMSIS-Toolbox
@@ -154,7 +153,7 @@ Some corporate networks require **device registration** (often MAC address white
 3. Download and install pyOCD
 
     ```bash
-    wget 2download/v0.44.1/pyocd-linux-arm64-0.44.1.zip
+    wget https://github.com/pyocd/pyOCD/releases/download/v0.44.1/pyocd-linux-arm64-0.44.1.zip
     mkdir pyocd && cd pyocd
     unzip ./../pyocd-linux-arm64-0.44.1.zip
     cd ..
@@ -169,8 +168,7 @@ Some corporate networks require **device registration** (often MAC address white
     export CMSIS_PACK_ROOT="$HOME/packs"
     ```
 
-> [!IMPORTANT]
-> Make paths available after a reboot of the Raspberry Pi hardware with:
+    **IMPORTANT:** Make paths available after a reboot of the Raspberry Pi hardware with:
 
     ```bash
     echo 'export PATH="$HOME/pyocd:$PATH"' >> ~/.bashrc
@@ -179,8 +177,7 @@ Some corporate networks require **device registration** (often MAC address white
     echo 'export CMSIS_PACK_ROOT="$HOME/packs"' >> ~/.bashrc
     ```
 
-> [!TIP]
-> Sanity check `pyOCD` and `cpackget` installation and version numbers:
+    **TIP:** Sanity check `pyOCD` and `cpackget` installation and version numbers:
 
     ```bash
     pyocd --version            # expected version 0.44.1 or higher
@@ -190,15 +187,14 @@ Some corporate networks require **device registration** (often MAC address white
 
 5. Install required software packs
 
-    Install for the target hardware the BSP and DFP software packs. The [`*.cbuild-run.yml`](https://open-cmsis-pack.github.io/cmsis-toolbox/YML-CBuild-Format/#run-and-debug-management) file of your application lists this information. Alternatively use [www.keil.arm.com/packs](https://www.keil.arm.com/packs) to discover this information. For the NUCLEO-H563ZI these packs are requried:
+    Install the BSP and DFP software packs for your target hardware. The [`*.cbuild-run.yml`](https://open-cmsis-pack.github.io/cmsis-toolbox/YML-CBuild-Format/#run-and-debug-management) file of your application lists this information. Alternatively, use [www.keil.arm.com/packs](https://www.keil.arm.com/packs) to discover this information. For the NUCLEO-H563ZI, these packs are required:
 
     ```bash
     cpackget add Keil::NUCLEO-H563ZI_BSP@1.1.1
     cpackget add Keil::STM32H5xx_DFP@2.2.0
     ```
 
-   > [!NOTE]
-   > This is a one-time installation that depends on your hardware
+    **NOTE:** This is a one-time installation that depends on the target hardware connected to the Raspberry Pi 5.
 
 6. Install udev rules (required for USB access)
 
@@ -220,11 +216,11 @@ Some corporate networks require **device registration** (often MAC address white
     # ---- Keil USB SDSIO Client ----
     sudo tee -a /etc/udev/rules.d/99-sdsio-client.rules > /dev/null << 'EOF'
     # c251:8007 Keil USB SDSIO Client
-    SUBSYSTEM=="usb", ATTR{idVendor}=="c251", ATTR{idProduct}=="8007", MODE:="666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="c251", ATTR{idProduct}=="8007", MODE="0666"
     EOF
     ```
 
-7.  Reload udev so the new rules take effect:
+7. Reload udev so the new rules take effect:
 
     ```bash
     sudo udevadm control --reload-rules
@@ -236,13 +232,27 @@ Some corporate networks require **device registration** (often MAC address white
     Add your user to `plugdev` for USB device access:
 
     ```bash
+    sudo groupadd -f plugdev
     sudo usermod -aG plugdev $USER
     ```
+
+9. Connect the target hardware to Raspberry Pi 5 and verify the debug adapter connection using the `pyOCD list` command. In this example, two debug adapters are connected. Use the Unique ID with the pyOCD option `--uid` to select a specific probe.
+
+   ```bash
+   pyocd list
+
+      #   Probe/Board                                Unique ID                  Target
+    ---------------------------------------------------------------------------------------------
+      0   KEIL - Tools By ARM Keil ULINKplus         L96807771A                 n/a
+
+      1   STLINK-V3                                  001700054142501320353451   stm32h563zitx NUCLEO-H563ZI
+   ```
+
 <!---
 this needs rework once the SDSIO-Server is available.
-1. **Install the SDS-Framework on the Rapsberry Pi**
+1. **Install the SDS-Framework on the Raspberry Pi**
 
-    ℹ You need the SDS-Framework/utilities for an application the CMSIS-Zephyr repository.
+    ℹ You need the SDS-Framework/utilities for an application in the CMSIS-Zephyr repository.
 
     ```bash
     # 0) Go to the home directory
