@@ -49,7 +49,7 @@ Use the following settings with the Raspberry Pi Imager:
 
 1. **Power up the Raspberry Pi**
     - Insert the microSD.
-    - Connect the Raspberry Pi to the monitor, keyboard, mouse and LAN.
+    - Connect the Raspberry Pi to the monitor, keyboard, and LAN.
     - Power on the Raspberry Pi.
 
 2. **Boot messages**
@@ -65,12 +65,8 @@ Use the following settings with the Raspberry Pi Imager:
     ```text
     Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-1031-raspi aarch64)
     :::::
-    IPv4 address for eth0: 10.41.0.178
-    :::::
     74 updates can be applied immediately.
     ```
-
-    - The assigned IP address is use to connect to the Raspberry Pi using SSH from your host computer (see section 5).
 
 5. **Apply available updates** (this may take some time)
 
@@ -83,7 +79,7 @@ Use the following settings with the Raspberry Pi Imager:
 
 ## 3. Register MAC on corporate network
 
-Some corporate networks require **device registration** (often MAC address whitelisting) before a new device can get network access.
+Some corporate networks require **device registration** (often called MAC address postive listing or whitelisting) before a new device can get network access.
 
 1. Check your corporate IT/network onboarding process.
    - Look for a device registration portal, NAC onboarding page, or a helpdesk workflow.
@@ -98,15 +94,15 @@ Some corporate networks require **device registration** (often MAC address white
 
 3. Register the Raspberry Pi's **Ethernet MAC address** (from Section 3) in your corporate system.
    - Typical fields are:
-     - Device name: `rsp-p5-01` (example)
+     - Device name: `rpi-ci` (example)
      - Device ID / MAC: `88:A2:9E:49:E6:CB` (example)
      - Description: Raspberry Pi 5 (runner)
 
-4. Wait for approval/propagation (if applicable), then reconnect the Ethernet cable and continue with the next section.
+4. Wait for approval/propagation (if applicable), then reconnect the Ethernet cable, reboot the Raspberry Pi 5, and continue with the next section.
 
 ## 4. Find IP address
 
-1. Connect to your Raspberry Pi with keyboard, mouse, LAN cable, and a monitor.
+1. Connect to your Raspberry Pi with keyboard, monitor, and LAN.
     - The Raspberry Pi is assigned an IP address.
 2. Type:
 
@@ -118,7 +114,7 @@ Some corporate networks require **device registration** (often MAC address white
 
 ## 5. Connect with SSH from remote computer
 
-1. On a Windows PC, open PowerShell and type (refer to SSH setup for other host operating systems):
+1. Open PowerShell or Bash console and type:
 
     ```powershell
     ssh devuser@10.41.0.178
@@ -137,14 +133,14 @@ Some corporate networks require **device registration** (often MAC address white
     sudo apt install unzip -y
     ```
 
-2. Download and install CMSIS-Toolbox
+2. Download and install CMSIS-Toolbox (any version newer then 2.14.1)
 
     ```bash
     wget https://artifacts.tools.arm.com/cmsis-toolbox/2.14.1/cmsis-toolbox-linux-arm64.tar.gz
     tar -xf cmsis-toolbox-linux-arm64.tar.gz
     ```
 
-3. Download and install pyOCD
+3. Download and install pyOCD (any version newer than 0.44.1)
 
     ```bash
     wget https://github.com/pyocd/pyOCD/releases/download/v0.44.1/pyocd-linux-arm64-0.44.1.zip

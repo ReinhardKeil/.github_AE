@@ -18,7 +18,6 @@ The repositories on [github.com/Arm-Examples](https://github.com/Arm-Examples) u
 
 [Arm-Software/cmsis-actions](https://github.com/ARM-software/cmsis-actions) are reusable workflows that let you install tools and active software licenses. Use the instructions of these actions to enable other CI/CD systems such as Azure DevOps or GitLab.
 
-
 ## CI/CD Capabilities for Embedded Development
 
 The underlying build system of [Keil Studio](https://www.keil.arm.com/) uses the [CMSIS-Toolbox](https://open-cmsis-pack.github.io/cmsis-toolbox/) and CMake. [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners) provide virtual machines for automated build and execution tests using simulation models, while [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners) enable testing on actual target hardware. [CI](https://en.wikipedia.org/wiki/Continuous_integration) is streamlined with:
