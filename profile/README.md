@@ -7,7 +7,7 @@ Arm-Examples show the usage of Arm technology on various platforms.
 - [Browse all repositories](https://github.com/orgs/Arm-Examples/repositories?q=archived%3Afalse)
 - [Recently updated repositories](https://github.com/orgs/Arm-Examples/repositories?sort=updated&?q=archived%3Afalse)
 - [Popular repositories (most stars)](https://github.com/orgs/Arm-Examples/repositories?sort=stargazers&?q=archived%3Afalse)
-- Click on "Most Used Topics" (Desktop Webside only)
+- Click on "Most used topics" (Desktop Webside only)
 
 ## Featured Examples for Keil MDK
 
@@ -65,7 +65,7 @@ The [MDK Professional Edition](https://www.keil.arm.com/keil-mdk/#mdk-v6-edition
 
 ### CI/CD Automation (GitHub Actions)
 
-Most of the above example projects include GitHub actions that run automated CI tests. The following projects help to get started with test automation. Read the section **[CI/CD](CICD.md)** to learn more.
+Most of the above example projects include GitHub actions that run automated CI tests. The following projects help to get started with test automation. Test can execute to [FVP simulation models](https://arm-software.github.io/AVH/main/simulation/html/index.html) or [hardware targets using a self-hosted runner](RPI_GH_Runner.md). Read the section **[CI/CD](CICD.md)** to learn more.
 
 | Example | Hardware | Content  |
 |:--------|:---------|:---------|
