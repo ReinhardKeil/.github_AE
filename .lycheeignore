@@ -4,4 +4,5 @@
 # Known false positive / environment-sensitive
 https://www.raspberrypi.com/software
 https://www.raspberrypi.com/software/
+https://www.raspberrypi.com/documentation/computers/getting-started.html#imager-install
 https://www.st.com/en/embedded-software/x-cube-stl.html
