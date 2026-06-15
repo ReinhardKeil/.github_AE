@@ -46,7 +46,7 @@ Arm offers for Edge AI development on the Cortex-M processor family and Ethos-U 
 |:--------|:---------|:--------|
 | [CMSIS-MLEK-Examples](https://github.com/Arm-Examples/cmsis-mlek-examples) | Alif Ensemble E7 |  Pre-configured machine learning (ML) projects using the ML Embedded Evaluation Kit. [Watch the related webinar](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250812_Multicore_Alif.mp4). |
 | [SDS-Examples](https://github.com/Arm-Examples/SDS-Examples) | Various | Examples showing the usage of the Synchronous Data Streaming (SDS) Framework. [Watch the related webinar](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250916_SDS_Webinar.mp4). |
-| [CMSIS-Executorch](https://github.com/Arm-Examples/CMSIS-Executorch) | Ethos-U | Project template for embedded applications with Arm Ethos-U that use ExecuTorch AI models |
+| [ModelNova](https://github.com/Arm-Examples/ModelNova) | Alif Ensemble E8, Ethos-U | Build Edge AI applications for Cortex-M/Ethos-U using Keil Studio, ModelNova Fusion Studio, and SDS-Framework.
 
 ### Functional Safety (FuSa RTS)
 
