@@ -56,8 +56,6 @@ The [MDK Professional Edition](https://www.keil.arm.com/keil-mdk/#mdk-v6-edition
 
 **[Watch this video](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250930_FuSa_TRAVEO.mp4?#t=01:35 "Software development for safety critical applications")**, explore the projects below or read the section [**Functional Safety**](FuSa.md) to learn more.
 
-<br clear="left"/>
-
 | Example | Hardware |  Content |
 |:--------|:---------|:---------|
 | [Safety-Example-Infineon-T2G](https://github.com/Arm-Examples/Safety-Example-Infineon-T2G) | Infineon Traveo T2G (Cortex-M7)| [Fusa RTS](https://developer.arm.com/Tools%20and%20Software/Keil%20MDK/FuSa%20Run-Time%20System) traffic light example, CMSIS-Driver development and verification. [Watch the related webinar](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250930_FuSa_TRAVEO.mp4). |
@@ -65,7 +63,14 @@ The [MDK Professional Edition](https://www.keil.arm.com/keil-mdk/#mdk-v6-edition
 
 ### CI/CD Automation (GitHub Actions)
 
-Most of the above example projects include GitHub actions that run automated CI tests. The following projects help to get started with test automation. Test can execute to [FVP simulation models](https://arm-software.github.io/AVH/main/simulation/html/index.html) or [hardware targets using a self-hosted runner](RPI_GH_Runner.md). Read the section **[CI/CD](CICD.md)** to learn more.
+[<img src="cicd_intro.png" alt="Introduction to CI/CD test automation" width="317" height="193" align="left">](https://developer.arm.com/-/media/arm%20developer%20community/videos/tools%20and%20software/keil%20mdk/cicd_webinar.mp4
+ "Introduction to CI/CD test automation")
+
+Most of the above example projects include GitHub actions that run automated CI tests. The following projects help to get started with test automation. Test can execute to [FVP simulation models](https://arm-software.github.io/AVH/main/simulation/html/index.html) or [hardware targets using a self-hosted runner](RPI_GH_Runner.md).
+
+**[Watch this video](https://developer.arm.com/-/media/arm%20developer%20community/videos/tools%20and%20software/keil%20mdk/cicd_webinar.mp4 "Introduction to CI/CD test automation")**, explore [projects with topic "cicd"](https://github.com/search?q=topic%3Acicd+org%3AArm-Examples+fork%3Atrue&type=repositories) or read the section **[CI/CD](CICD.md)** to learn more.
+
+<br clear="left"/>
 
 | Example | Hardware | Content  |
 |:--------|:---------|:---------|
@@ -75,5 +80,5 @@ Most of the above example projects include GitHub actions that run automated CI 
 ## Related
 
 <!-- todo - Software Packs maintained by Arm -->
-- [Other Examples](ListExamples.md)
 - [Keil Studio Documentation](https://mdk-packs.github.io/vscode-cmsis-solution-docs/)
+- [CMSIS-Toolbox Documentation](https://open-cmsis-pack.github.io/cmsis-toolbox/)
