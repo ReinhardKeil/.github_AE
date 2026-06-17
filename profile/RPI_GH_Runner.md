@@ -151,13 +151,23 @@ Some corporate networks require **device registration** (often called MAC addres
     cd ..
     ```
 
-4. Set up environment variables
+4. Download and install the SDSIO-server (any version newer than 3.0.1)
+    ```bash
+    wget https://github.com/ARM-software/SDS-Framework/releases/download/v3.0.1/sdsio-server-linux-arm64-3.0.1.zip
+    mkdir sdsio-server && cd sdsio-server
+    unzip ./../sdsio-server-linux-arm64-3.0.1.zip
+    cd ..
+    ```
+
+
+5. Set up environment variables
 
     ```bash
     export PATH="$HOME/pyocd:$PATH"
     export CMSIS_TOOLBOX_ROOT="$HOME/cmsis-toolbox-linux-arm64"
     export PATH="$CMSIS_TOOLBOX_ROOT/bin:$PATH"
     export CMSIS_PACK_ROOT="$HOME/packs"
+    export PATH="$HOME/sdsio-server:$PATH"	
     ```
 
     **IMPORTANT:** Make paths available after a reboot of the Raspberry Pi hardware with:
@@ -167,16 +177,18 @@ Some corporate networks require **device registration** (often called MAC addres
     echo 'export CMSIS_TOOLBOX_ROOT="$HOME/cmsis-toolbox-linux-arm64"' >> ~/.bashrc
     echo 'export PATH="$CMSIS_TOOLBOX_ROOT/bin:$PATH"' >> ~/.bashrc
     echo 'export CMSIS_PACK_ROOT="$HOME/packs"' >> ~/.bashrc
+    echo 'export PATH="$HOME/sdsio-server:$PATH"' >> ~/.bashrc	
     ```
 
-    **TIP:** Sanity check `pyOCD` and `cpackget` installation and version numbers:
+    **TIP:** Sanity check `pyOCD`, `cpackget`, and `sdsio-server` installation and version numbers:
 
     ```bash
     pyocd --version            # expected version 0.44.1 or higher
     cpackget --version         # expected version 2.2.1 or higher
+    sdsio-server --version     # expected version 3.0.1 or higher
     ```
 
-5. Install required software packs
+6. Install required software packs
 
     Install the BSP and DFP software packs for your target hardware. The [`*.cbuild-run.yml`](https://open-cmsis-pack.github.io/cmsis-toolbox/YML-CBuild-Format/#run-and-debug-management) file of your application lists this information. Alternatively, use [www.keil.arm.com/packs](https://www.keil.arm.com/packs) to discover this information. For the NUCLEO-H563ZI, these packs are required:
 
@@ -187,7 +199,7 @@ Some corporate networks require **device registration** (often called MAC addres
 
     **NOTE:** This is a one-time installation that depends on the target hardware connected to the Raspberry Pi 5.
 
-6. Install udev rules (required for USB access)
+7. Install udev rules (required for USB access)
 
     The udev rules control how USB devices are detected and what permissions they get. The following examples show typical setups:
 
@@ -211,7 +223,7 @@ Some corporate networks require **device registration** (often called MAC addres
     EOF
     ```
 
-7. Reload udev so the new rules take effect:
+8. Reload udev so the new rules take effect:
 
     ```bash
     sudo udevadm control --reload-rules
@@ -273,6 +285,7 @@ this needs rework once the SDSIO-Server is available.
     ├── actions-runner/
     ├── cmsis-toolbox-linux-arm64/
     ├── pyocd/
+    ├── sdsio-server/
     └── python
     ```
 
