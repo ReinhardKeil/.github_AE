@@ -61,21 +61,22 @@ The [MDK Professional Edition](https://www.keil.arm.com/keil-mdk/#mdk-v6-edition
 | [Safety-Example-Infineon-T2G](https://github.com/Arm-Examples/Safety-Example-Infineon-T2G) | Infineon Traveo T2G (Cortex-M7)| [Fusa RTS](https://developer.arm.com/Tools%20and%20Software/Keil%20MDK/FuSa%20Run-Time%20System) traffic light example, CMSIS-Driver development and verification. [Watch the related webinar](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250930_FuSa_TRAVEO.mp4). |
 | [Safety-Example-STM32](https://github.com/Arm-Examples/Safety-Example-STM32) | STM32H5 (Cortex-M33) | [Fusa RTS](https://developer.arm.com/Tools%20and%20Software/Keil%20MDK/FuSa%20Run-Time%20System) traffic light example. [Watch the related webinar](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/20250930_FuSa_TRAVEO.mp4). |
 
-### CI/CD Automation (GitHub Actions)
+### CI/CD Automation and DevOps
 
-[<img src="cicd_intro.png" alt="Introduction to CI/CD test automation" width="317" height="193" align="left">](https://developer.arm.com/-/media/arm%20developer%20community/videos/tools%20and%20software/keil%20mdk/cicd_webinar.mp4
- "Introduction to CI/CD test automation")
+[<img src="DevOps_with_Keil_MDK_Thumbnail.png" alt="DevOps with Keil MDK" width="318" height="201" align="left">](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/DevOps_With_Keil_MDK_Webinar.mp4)
 
-Most of the above example projects include GitHub actions that run automated CI tests. The following projects help to get started with test automation. Test can execute to [FVP simulation models](https://arm-software.github.io/AVH/main/simulation/html/index.html) or [hardware targets using a self-hosted runner](RPI_GH_Runner.md).
+Discover how DevOps improves embedded systems with Arm Keil MDK. Explore build testing, hardware-in-the-loop simulation, and ML/DSP regression testing.
 
-**[Watch this video](https://developer.arm.com/-/media/arm%20developer%20community/videos/tools%20and%20software/keil%20mdk/cicd_webinar.mp4 "Introduction to CI/CD test automation")**, explore [projects with topic "cicd"](https://github.com/search?q=topic%3Acicd+org%3AArm-Examples+fork%3Atrue&type=repositories) or read the section **[CI/CD](CICD.md)** to learn more.
+**[Watch this video](https://armkeil.blob.core.windows.net/developer/Files/videos/KeilStudio/DevOps_With_Keil_MDK_Webinar.mp4 "DevOps with Keil MDK")**, explore [projects with topic "cicd"](https://github.com/search?q=topic%3Acicd+org%3AArm-Examples+fork%3Atrue&type=repositories) or read the section **[CI/CD](CICD.md)** to learn more.
 
 <br clear="left"/>
 
 | Example | Hardware | Content  |
 |:--------|:---------|:---------|
 | [AVH_CI_Template](https://github.com/Arm-Examples/AVH_CI_Template) | FVP_MPS2_Cortex-M3 | CI Template for unit test automation |
-| [AVH-Hello](https://github.com/Arm-Examples/AVH-Hello) | Multiple FVP simulation models | CI project with a test matrix that uses GitHub Actions on a GitHub-hosted runner. |
+| [AWS_MQTT_Demo](https://github.com/Arm-Examples/AWS_MQTT_Demo) | Multiple FVP simulation models | Integration test on simulator. |
+| [CMSIS-Zephyr](https://github.com/Arm-Examples/CMSIS-Zephyr) | Real target hardware  | Integration test on hardware. |
+| [ModelNova](https://github.com/Arm-Examples/ModelNova) | Self-hosted runner  | Integration test with data streaming on hardware and simulation. |
 
 ## Related
 
