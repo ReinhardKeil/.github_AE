@@ -29,12 +29,13 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v7
 
       # Using a progressive relaxation strategy that maximizes cache reuse without breaking correctness.
       - name: Restore lychee cache
         id: lychee-cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: .lycheecache
           key: lychee-${{ runner.os }}-${{ github.ref_name }}-${{ hashFiles('.lycheeignore', 'profile/**/*.md') }}
@@ -62,7 +63,7 @@ jobs:
 
       - name: Save lychee cache
         if: always() && steps.lychee-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         with:
           path: .lycheecache
           key: lychee-${{ runner.os }}-${{ github.ref_name }}-${{ hashFiles('.lycheeignore', 'profile/**/*.md') }}
