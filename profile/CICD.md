@@ -55,7 +55,7 @@ CI pipelines may store build artifact files, reports, and may further automate f
 
 > Badges with a label **Test** or **Simulation** indicate [GitHub actions](https://github.com/features/actions) that run tests on virtual hardware with FVP simulation models.
 >
->[![Execution Test](https://img.shields.io/github/actions/workflow/status/Arm-Examples/SDS-Examples/Test_ST_KeywordSpotting.yml?logo=arm&logoColor=0091bd&label=Execution)](https://github.com/Arm-Examples/SDS-Examples/blob/main/.github/workflows/Test_ST_KeywordSpotting.yml)
+>[![Execution Test](https://img.shields.io/github/actions/workflow/status/Arm-Examples/SDS-Examples/Test_ST_KeywordSpotting.yml?logo=arm&logoColor=0091bd&label=Test)](https://github.com/Arm-Examples/SDS-Examples/blob/main/.github/workflows/Test_ST_KeywordSpotting.yml)
 
 ## HIL Testing with pyOCD
 
